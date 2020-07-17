@@ -13,10 +13,15 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "category")
 public class Category {
-	
+		@Id
+		@Column(name = "id")
+		@GeneratedValue
 	 	private long id;
+
+		@Column(name = "name")
 	    private String name;
-	 
+
+		@OneToMany(mappedBy = "category", cascade = CascadeType.ALL)
 	    private Set<Product> products;
 	 
 	    public Category() {
@@ -26,14 +31,12 @@ public class Category {
 	        this.name = name;
 	    }
 	 
-	    @Id
-	    @Column(name = "category_id")
-	    @GeneratedValue
+
 	    public long getId() {
 	        return id;
 	    }
 	 
-	    @OneToMany(mappedBy = "category", cascade = CascadeType.ALL)
+
 	    public Set<Product> getProducts() {
 	        return products;
 	    }

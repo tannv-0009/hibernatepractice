@@ -4,6 +4,8 @@ import java.io.Serializable;
 import java.lang.reflect.ParameterizedType;
 import java.util.List;
 
+import com.example.entity.Customer;
+import com.example.entity.Transaction;
 import org.apache.log4j.Logger;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -31,7 +33,11 @@ public abstract class AbstractHibernateDao<T extends Serializable> {
 		configuration.addResource("address.hbm.xml");
 		configuration.addResource("user.hbm.xml");
 		configuration.addPackage("com.example.entity");
-        ServiceRegistry srvcReg =
+		configuration.addAnnotatedClass(Transaction.class);
+		configuration.addAnnotatedClass(Customer.class);
+
+
+				ServiceRegistry srvcReg =
                 new StandardServiceRegistryBuilder().applySettings(configuration.getProperties()).build();
         sessionFactory = configuration.buildSessionFactory(srvcReg);
     }

@@ -7,12 +7,17 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import java.io.Serializable;
 
 @Entity
 @Table( name= "product")
-public class Product {
-	
+public class Product  implements Serializable {
+
+	@Id
+	@Column(name = "id")
+	@GeneratedValue
 	private long id;
+
     public String getName() {
 		return name;
 	}
@@ -48,7 +53,9 @@ public class Product {
 	private String name;
     private String description;
     private float price;
- 
+
+	@ManyToOne
+	@JoinColumn(name = "id")
     private Category category;
  
     public Product() {
@@ -62,15 +69,11 @@ public class Product {
         this.category = category;
     }
  
-    @Id
-    @Column(name = "PRODUCT_ID")
-    @GeneratedValue
+
     public long getId() {
         return id;
     }
- 
-    @ManyToOne
-    @JoinColumn(name = "category_id")
+
     public Category getCategory() {
         return category;
     }

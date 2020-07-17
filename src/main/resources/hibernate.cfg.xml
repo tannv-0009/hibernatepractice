@@ -14,6 +14,8 @@
         <mapping resource="address.hbm.xml"/>
         <mapping class ="com.example.entity.Category"/>
         <mapping class ="com.example.entity.Product"/>
+        <mapping class ="com.example.entity.Transaction"/>
+        <mapping class ="com.example.entity.Customer"/>
 
     </session-factory>
 </hibernate-configuration>
